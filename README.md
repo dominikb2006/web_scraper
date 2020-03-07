@@ -1,0 +1,3 @@
+# PlanIt
+
+Travel planning app
