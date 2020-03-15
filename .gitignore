@@ -1,3 +1,5 @@
 .idea/
 data/riders_db/.data/
 data/travelers_db/.data/
+riders/riders/__pycache__/
+travelers/backend/travelers_backend/__pycache__/
