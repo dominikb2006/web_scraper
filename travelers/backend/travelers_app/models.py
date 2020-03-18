@@ -4,7 +4,7 @@ from django.db import models
 class Address(models.Model):
     address_ID = models.AutoField(primary_key=True)
     address_city = models.CharField(max_length=128)
-    address_ZIP = models.DecimalField(max_length=10)
+    address_ZIP = models.CharField(max_length=10)
     address_street = models.CharField(max_length=128)
     address_number = models.CharField(max_length=64)
 
@@ -14,9 +14,9 @@ class Address(models.Model):
 
 class Card(models.Model):
     card_ID = models.AutoField(primary_key=True)
-    card_number = models.DecimalField(max_length=16)
+    card_number = models.CharField(max_length=16)
     card_date = models.DateField()
-    card_CVV = models.DecimalField(max_length=3)
+    card_CVV = models.CharField(max_length=3)
 
     def __str__(self):
         return str(self.card_number)

@@ -32,4 +32,4 @@ def signup(request):
         else:
             print('Błędne wartości')
 
-    return render(request, 'travelers/users.html', {'signup_form': form})
+    return render(request, 'travelers/signup.html', {'signup_form': form})
