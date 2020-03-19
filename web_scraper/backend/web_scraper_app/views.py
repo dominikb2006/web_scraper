@@ -1,43 +1,48 @@
 from django.shortcuts import render
 
-from .forms import UserForm
-from .models import User
+from .forms import WebPageForm
+from .models import *
 
+
+# def home(request):
+#     home_dict = {'index_insert': "Hello, please enter address URL and click Submit"}
+#     return render(request, 'web_scraper/--home.html', context=home_dict)
+
+
+# def help(request):
+#     help_dict = {'help_insert': "Sorry, i Can't help you :("}
+#     return render(request, 'web_scraper/help.html', context=help_dict)
+
+
+def list_url(request):
+    page_list = WebPage.objects.order_by("url")
+    list_dict = {"page_list_insert": page_list}
+    return render(request, 'list_url.html', context=list_dict)
+
+def list_text(request):
+    text_list = Texts.objects.order_by("head")
+    list_dict = {"text_list_insert": text_list}
+    return render(request, 'list_text.html', context=list_dict)
 
 def home(request):
-    index_dict = {'index_insert': "Yup, Its index"}
-    return render(request, 'web_scraper/home.html', context=index_dict)
-
-
-def help(request):
-    help_dict = {'help_insert': "Sorry, i Can't help you :("}
-    return render(request, 'web_scraper/help.html', context=help_dict)
-
-
-def signin(request):
-    webpages_list = User.objects.order_by("FirstName")
-    users_dict = {"users_list_insert": webpages_list,
-                  'users_insert': "THERE IS A LIST! LIST I SAID!"}
-    return render(request, 'web_scraper/signin.html', context=users_dict)
-
-def signup(request):
-    form = UserForm()
-    signup_dict = {"signup_form": form}
+    form = WebPageForm()
+    home_dict = {"insert_form": form,
+                   "welcome_form": "Hello, please enter address URL and click Submit"}
 
     if request.method == "POST":
-        form = UserForm(request.POST)
+        form = WebPageForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)
-            print("VALIDATION SUCCESS")
-            print("Imię: " + form.cleaned_data['first_name'])
-            print("Nazwisko: " + form.cleaned_data['last_name'])
-            print("Numer telefonu: " +form.cleaned_data['phone_number'])
-            print("Adres e-mail: " + form.cleaned_data['email'])
+            # print("VALIDATION SUCCESS")
+            print("URL: " + form.cleaned_data['url'])
+            # print("Nazwisko: " + form.cleaned_data['last_name'])
+            # print("Numer telefonu: " +form.cleaned_data['phone_number'])
+            # print("Adres e-mail: " + form.cleaned_data['email'])
             # print("VERIFY EMAIL: " + form.cleaned_data['verify_email'])
             return home(request)
 
         else:
             print('ERROR FORM INVALID / Email, not unique /')
 
-    return render(request, 'web_scraper/signup.html', context=signup_dict)
+    return render(request, 'web_scraper/home.html', context=home_dict)

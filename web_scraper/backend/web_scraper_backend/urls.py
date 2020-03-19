@@ -23,5 +23,9 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('web_scraper/', include('web_scraper_app.urls')),
+    path('list_url/', views.list_url, name="list_url"),
+    path('list_text/', views.list_text, name="list_text"),
+    # path('signin/', views.signin, name='signin'),
+    # path('help/', views.help, name='help'),
+    # path('web_scraper/', include('web_scraper_app.urls')),
 ]

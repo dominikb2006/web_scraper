@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PlanIt! Sign In</title>
+    <title>PlanIt! Sign up!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h1>Signin</h1>
+    <h1>Uzupełnij dane</h1>
+    <div class="container">
+      <form method="POST">
+          {{ insert_form.as_p }}
+          {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+    </div>
 
 </body>
 </html>

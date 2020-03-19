@@ -1,7 +1,8 @@
 from django import forms
-from .models import User
+from .models import WebPage
 
-class UserForm(forms.ModelForm):
+
+class WebPageForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = WebPage
         fields = '__all__'
