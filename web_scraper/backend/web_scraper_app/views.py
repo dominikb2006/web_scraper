@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .forms import NewUserForm
+from .forms import UserForm
 from .models import User
 
 
@@ -21,11 +21,11 @@ def signin(request):
     return render(request, 'web_scraper/signin.html', context=users_dict)
 
 def signup(request):
-    form = NewUserForm()
+    form = UserForm()
     signup_dict = {"signup_form": form}
 
     if request.method == "POST":
-        form = NewUserForm(request.POST)
+        form = UserForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)

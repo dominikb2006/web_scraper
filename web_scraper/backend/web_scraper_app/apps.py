@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TravelersAppConfig(AppConfig):
-    name = 'travelers_app'
+    name = 'web_scraper_app'

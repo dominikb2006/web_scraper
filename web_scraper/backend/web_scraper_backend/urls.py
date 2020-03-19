@@ -1,4 +1,4 @@
-"""travelers_backend URL Configuration
+"""web_scraper_backend URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -17,11 +17,11 @@ from django.conf.urls import include
 from django.contrib import admin
 # from django.conf.urls import url
 from django.urls import path
-from travelers_app import views
+from web_scraper_app import views
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('web_scraper/', include('travelers_app.urls')),
+    path('web_scraper/', include('web_scraper_app.urls')),
 ]
