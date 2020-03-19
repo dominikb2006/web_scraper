@@ -1,19 +1,19 @@
 version: "3.7"
 services:
-  riders_db:
-    build: data/riders_db
-    container_name: riders_db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: riders123
-      PG_DATA: /var/lib/postgresql/data
-    volumes:
-      - ./data/riders_db/.data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-  travelers_db:
+#  riders_db:
+#    build: data/riders_db
+#    container_name: riders_db
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: riders123
+#      PG_DATA: /var/lib/postgresql/data
+#    volumes:
+#      - ./data/riders_db/.data:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+  web_scraper_db:
     build: data/travelers_db
-    container_name: travelers_db
+    container_name: web_scraper_db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: travelers123
@@ -22,22 +22,22 @@ services:
       - ./data/travelers_db/.data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
-  riders:
-    build: riders
-    container_name: riders
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8001:8000"
-    volumes:
-      - ./riders:/code
-    links:
-      - riders_db
-    environment:
-      DB_HOST: 'riders_db'
-      DB_PORT: 5432
-      DB_USER: plan_it
-      DB_PASSWORD: riders123
-      DB_NAME: riders_db
+#  riders:
+#    build: riders
+#    container_name: riders
+#    command: python manage.py runserver 0.0.0.0:8000
+#    ports:
+#      - "8001:8000"
+#    volumes:
+#      - ./riders:/code
+#    links:
+#      - riders_db
+#    environment:
+#      DB_HOST: 'riders_db'
+#      DB_PORT: 5432
+#      DB_USER: plan_it
+#      DB_PASSWORD: riders123
+#      DB_NAME: riders_db
   travelers_backend:
     build: travelers/backend
     container_name: travelers_backend
@@ -47,10 +47,10 @@ services:
     volumes:
       - ./travelers/backend:/code
     links:
-      - travelers_db
+      - web_scraper_db
     environment:
-      DB_HOST: 'travelers_db'
+      DB_HOST: 'web_scraper_db'
       DB_PORT: 5432
       DB_USER: plan_it
       DB_PASSWORD: travelers123
-      DB_NAME: travelers_db
+      DB_NAME: web_scraper_db

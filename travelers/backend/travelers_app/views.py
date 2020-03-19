@@ -20,16 +20,24 @@ def signin(request):
                   'users_insert': "THERE IS A LIST! LIST I SAID!"}
     return render(request, 'travelers/signin.html', context=users_dict)
 
-
 def signup(request):
     form = NewUserForm()
+    signup_dict = {"signup_form": form}
 
     if request.method == "POST":
-        signup_form = NewUserForm(request.POST)
+        form = NewUserForm(request.POST)
+
         if form.is_valid():
             form.save(commit=True)
+            print("VALIDATION SUCCESS")
+            print("Imię: " + form.cleaned_data['first_name'])
+            print("Nazwisko: " + form.cleaned_data['last_name'])
+            print("Numer telefonu: " +form.cleaned_data['phone_number'])
+            print("Adres e-mail: " + form.cleaned_data['email'])
+            # print("VERIFY EMAIL: " + form.cleaned_data['verify_email'])
             return home(request)
-        else:
-            print('Błędne wartości')
 
-    return render(request, 'travelers/signup.html', {'signup_form': form})
+        else:
+            print('ERROR FORM INVALID / Email, not unique /')
+
+    return render(request, 'travelers/signup.html', context=signup_dict)

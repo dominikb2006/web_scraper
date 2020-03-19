@@ -26,7 +26,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     # address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    # card = models.ForeignKey(Card, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=16, unique=True)
     email = models.EmailField(max_length=128, unique=True)
 
