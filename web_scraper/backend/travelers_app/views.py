@@ -6,19 +6,19 @@ from .models import User
 
 def home(request):
     index_dict = {'index_insert': "Yup, Its index"}
-    return render(request, 'travelers/home.html', context=index_dict)
+    return render(request, 'web_scraper/home.html', context=index_dict)
 
 
 def help(request):
     help_dict = {'help_insert': "Sorry, i Can't help you :("}
-    return render(request, 'travelers/help.html', context=help_dict)
+    return render(request, 'web_scraper/help.html', context=help_dict)
 
 
 def signin(request):
     webpages_list = User.objects.order_by("FirstName")
     users_dict = {"users_list_insert": webpages_list,
                   'users_insert': "THERE IS A LIST! LIST I SAID!"}
-    return render(request, 'travelers/signin.html', context=users_dict)
+    return render(request, 'web_scraper/signin.html', context=users_dict)
 
 def signup(request):
     form = NewUserForm()
@@ -40,4 +40,4 @@ def signup(request):
         else:
             print('ERROR FORM INVALID / Email, not unique /')
 
-    return render(request, 'travelers/signup.html', context=signup_dict)
+    return render(request, 'web_scraper/signup.html', context=signup_dict)

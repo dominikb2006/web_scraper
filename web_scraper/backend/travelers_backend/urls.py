@@ -23,5 +23,5 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('travelers/', include('travelers_app.urls')),
+    path('web_scraper/', include('travelers_app.urls')),
 ]
