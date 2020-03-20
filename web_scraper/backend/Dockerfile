@@ -5,10 +5,6 @@ RUN mkdir /code
 WORKDIR /code
 COPY ./requirements.txt /code/
 RUN pip install -r requirements.txt
-RUN pip install requests
-RUN pip install bs4
-RUN pip install Pillow
-RUN pip install tqdm
 COPY . /code/
 #sudo docker-compose exec web_scraper_app bash
 #ENTRYPOINT "python manage.py makemigrations web_scraper_app" && "python manage.py migrate"

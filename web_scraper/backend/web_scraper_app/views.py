@@ -1,53 +1,50 @@
 from django.shortcuts import render
 
-from .forms import WebPageForm
+from .forms import *
 from .models import *
 from .backend import *
 
-
 def list_text(request):
-    text_list = WebPage.objects.order_by("url")
+    text_list = WebPage.objects.order_by("-id")
     list_dict = {"text_list_insert": text_list,
                  "header": "List of Texts from Websites"}
     return render(request, 'list_text.html', context=list_dict)
 
 
 def list_images(request):
-    # text_list = WebPage.objects.order_by("url")
-    list_dict = {}
+    image_list = Image.objects.order_by("-id")
+    # from web_scraper.backend.web_scraper_backend import settings
+    list_dict = {"image_list_insert": image_list}#,
+                 # 'media_url':settings.MEDIA_URL}
     return render(request, 'list_images.html', context=list_dict)
 
 
-def results(request):  # ,url):
-    form = WebPageForm()
-
+def results(request):
     result_dict = {"result_text": WebPageForm.text}
     return render(request, 'results.html', context=result_dict)
 
 
 def home(request):
-    wrong_url_form = ''
-    home_dict = {"wrong_url_form": wrong_url_form,
+    wrong_url_form = 'Wrong URL'
+    home_dict = {"wrong_url_form": '',
                  "welcome_form": "Hello, please enter address URL and click Submit"}
 
     if request.method == "POST":
         url = request.POST.get('url')
         if is_valid(url):
+
             modelWP = WebPage(url=url, text=urlIntoText(url))
             modelWP.save()
 
             images_url = get_all_images(url)
             for image_url in images_url:
-                
-                modelI = Images(id=None, image_url=image_url, url=modelWP)
+                modelI = Image(image_url=image_url, url=modelWP, name=image_url.split("/")[-1])  # ,photo=image_url)
+                modelI.cache()
                 modelI.save()
+                print(modelI)
 
-            return render(request, 'home.html', context=home_dict)
         else:
-            wrong_url_form = "Wrong URL"
-            home_dict = {"wrong_url_form": wrong_url_form,
-                         "welcome_form": "Hello, please enter address URL and click Submit"}
-            return render(request, 'home.html', context=home_dict)
+            home_dict["wrong_url_form"] = wrong_url_form
         # form = WebPageForm(request.POST)
         #
         # if form.is_valid():

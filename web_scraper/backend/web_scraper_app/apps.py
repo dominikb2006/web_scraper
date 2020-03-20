@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class TravelersAppConfig(AppConfig):
+class WebScraperAppConfig(AppConfig):
     name = 'web_scraper_app'

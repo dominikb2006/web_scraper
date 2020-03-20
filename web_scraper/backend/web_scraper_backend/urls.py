@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from web_scraper_app import views
 
+# from web_scraper.backend.web_scraper_backend import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
@@ -26,9 +28,9 @@ urlpatterns = [
     path('results/', views.results, name="results"),
 ]
 
-urlpatterns += [
-    path('interact/', include('meetup.urls'))
-]
+# urlpatterns += [
+#     path('interact/', include('meetup.urls'))
+# ]
 
-if settings.DEBUD:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

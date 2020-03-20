@@ -3,18 +3,22 @@
 {% block body_block %}
 <h1 class="page-header">{{ header }}</h1>
 <div class="container">
-    {% if text_list_insert %}
+    {% if image_list_insert %}
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Site URL</th>
-            <th scope="col">Site Image</th>
+            <th scope="col">Image</th>
+            <th scope="col">Image URL</th>
+            <th scope="col">Image Name</th>
         </tr>
         </thead>
-        {% for page in text_list_insert %}.
+        {% for page in image_list_insert %}
         <tr>
             <td>{{ page.url }}</td>
-            <td>{{ page.text }}</td>
+            <td><img src="{{ page.image_url }}"></td>
+            <td>{{ page.name }}</td>
+            <td>{{ page.photo }}</td>
         </tr>
         {% endfor %}
     </table>
@@ -24,6 +28,6 @@
 
 </div>
 
-<!--{#<p><img src="{% static "images/sample.jpg" %}" alt="Oho, no picture here! :("></p>#}-->
+
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import os
-from tqdm import tqdm
+# from tqdm import tqdm
 from urllib.parse import urljoin, urlparse
 
 
@@ -19,7 +19,7 @@ def get_all_images(url):
     """
     soup = BeautifulSoup(requests.get(url).content, "html.parser")
     urls = []
-    for img in tqdm(soup.find_all("img"), "Extracting images"):
+    for img in soup.find_all("img"):
         img_url = img.attrs.get("src")
         if not img_url:
             # if img does not contain src attribute, just skip
@@ -31,7 +31,8 @@ def get_all_images(url):
             img_url = img_url[:pos]
         except ValueError:
             pass
-        urls.append(img_url)
+        if is_valid(img_url):
+            urls.append(img_url)
     return urls
 
 
