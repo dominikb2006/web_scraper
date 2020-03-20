@@ -5,15 +5,10 @@ from .models import *
 from .backend import *
 
 
-def list_url(request):
-    page_list = WebPage.objects.order_by("url")
-    list_dict = {"page_list_insert": page_list}
-    return render(request, 'list_url.html', context=list_dict)
-
-
 def list_text(request):
     text_list = WebPage.objects.order_by("url")
-    list_dict = {"text_list_insert": text_list}
+    list_dict = {"text_list_insert": text_list,
+                 "header": "List of Texts from Websites"}
     return render(request, 'list_text.html', context=list_dict)
 
 
@@ -22,25 +17,37 @@ def list_images(request):
     list_dict = {}
     return render(request, 'list_images.html', context=list_dict)
 
+
 def results(request):  # ,url):
     form = WebPageForm()
-    WebPage.gettext()
 
     result_dict = {"result_text": WebPageForm.text}
     return render(request, 'results.html', context=result_dict)
 
 
 def home(request):
-    model = WebPage()
-    # home_dict = {"insert_form": form,
-    #                "welcome_form": "Hello, please enter address URL and click Submit"}
+    wrong_url_form = ''
+    home_dict = {"wrong_url_form": wrong_url_form,
+                 "welcome_form": "Hello, please enter address URL and click Submit"}
 
     if request.method == "POST":
         url = request.POST.get('url')
-        model.url = url
-        model.text = urlIntoText(url)
-        model.save()
-        return render(request, 'home.html')
+        if is_valid(url):
+            modelWP = WebPage(url=url, text=urlIntoText(url))
+            modelWP.save()
+
+            images_url = get_all_images(url)
+            for image_url in images_url:
+                
+                modelI = Images(id=None, image_url=image_url, url=modelWP)
+                modelI.save()
+
+            return render(request, 'home.html', context=home_dict)
+        else:
+            wrong_url_form = "Wrong URL"
+            home_dict = {"wrong_url_form": wrong_url_form,
+                         "welcome_form": "Hello, please enter address URL and click Submit"}
+            return render(request, 'home.html', context=home_dict)
         # form = WebPageForm(request.POST)
         #
         # if form.is_valid():
@@ -58,4 +65,4 @@ def home(request):
         # else:
         #     print('ERROR FORM INVALID / Email, not unique /')
 
-    return render(request, 'home.html')  # , context=home_dict)
+    return render(request, 'home.html', context=home_dict)
