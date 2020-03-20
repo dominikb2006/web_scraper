@@ -3,4 +3,3 @@ from .models import *
 
 admin.site.register(WebPage)
 admin.site.register(Images)
-admin.site.register(Texts)

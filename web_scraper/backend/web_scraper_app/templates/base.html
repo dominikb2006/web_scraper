@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <ul class="nav">
+            <li><a class="navbar-brand nav-link" href="{% url 'home' %}">Home</a></li>
+            <li><a class="nav-item nav-link" href="{% url 'list_text' %}"">List Texts</a></li>
+            <li><a class="nav-item active nav-link" href="{% url 'list_images' %}"">List Images</a></li>
+            <li><a class="navbar-link nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+
+    {% block body_block %}
+
+    {% endblock %}
+</div>
+</body>
+</html>

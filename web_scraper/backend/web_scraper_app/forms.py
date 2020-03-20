@@ -4,5 +4,7 @@ from .models import WebPage
 
 class WebPageForm(forms.ModelForm):
     class Meta:
-        model = WebPage
-        fields = '__all__'
+        model = WebPage()
+        fields = ['url', ]
+        model.gettext()
+        # fields = '__all__'

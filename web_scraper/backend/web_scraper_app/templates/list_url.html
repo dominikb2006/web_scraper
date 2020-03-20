@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PlanIt! Sign In</title>
+    <title>List of URLs</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -14,10 +14,12 @@
         <table>
             <thead>
             <th>Site URL</th>
+            <th>Text</th>
             </thead>
             {% for page in page_list_insert %}.
                 <tr>
                     <td>{{ page.url }}</td>
+                    <td>{{ page.text }}</td>
                 </tr>
             {% endfor %}
         </table>

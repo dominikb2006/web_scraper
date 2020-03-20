@@ -25,6 +25,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('list_url/', views.list_url, name="list_url"),
     path('list_text/', views.list_text, name="list_text"),
+    path('list_images/', views.list_images, name="list_images"),
+    path('results/', views.results, name="results"),
     # path('signin/', views.signin, name='signin'),
     # path('help/', views.help, name='help'),
     # path('web_scraper/', include('web_scraper_app.urls')),
