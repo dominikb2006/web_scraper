@@ -17,20 +17,18 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from web_scraper_app import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 # from web_scraper.backend.web_scraper_backend import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('list_text/', views.list_text, name="list_text"),
-    path('list_images/', views.list_images, name="list_images"),
-    path('results/', views.results, name="results"),
-]
-
-# urlpatterns += [
-#     path('interact/', include('meetup.urls'))
-# ]
+                  path('admin/', admin.site.urls),
+                  path('', views.home, name='home'),
+                  path('list_text/', views.list_text, name="list_text"),
+                  path('list_images/', views.list_images, name="list_images"),
+                  path('getImages/', views.getImages, name="get_images"),
+                  path('getTexts/', views.getTexts, name="get_texts"),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

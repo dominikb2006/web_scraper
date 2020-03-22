@@ -9,16 +9,16 @@
         <tr>
             <th scope="col">Site URL</th>
             <th scope="col">Image</th>
-            <th scope="col">Image URL</th>
-            <th scope="col">Image Name</th>
+            <th scope="col">Local address</th>
+            <th scope="col">URL address</th>
         </tr>
         </thead>
         {% for page in image_list_insert %}
         <tr>
             <td>{{ page.url }}</td>
-            <td><img src="{{ page.image_url }}"></td>
-            <td>{{ page.name }}</td>
-            <td>{{ page.photo }}</td>
+            <td><img src="{{ page.local_image_url }}"></td>
+            <td>{{ page.local_image_url }}</td>
+            <td>{{ page.image_url }}</td>
         </tr>
         {% endfor %}
     </table>

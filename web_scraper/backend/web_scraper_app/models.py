@@ -2,6 +2,7 @@ from django.db import models
 from django.core.files import File
 import urllib.request
 import os
+from django.conf import settings
 
 
 class WebPage(models.Model):
@@ -15,11 +16,15 @@ class WebPage(models.Model):
 class Image(models.Model):
     url = models.ForeignKey(WebPage, on_delete=models.CASCADE)
     image_url = models.URLField(default='', max_length=5000)  # unique=True,
+    local_image_url = models.CharField(default='', max_length=5000)
     name = models.CharField(max_length=1000, default='')
     photo = models.ImageField(blank=True, default=None)
 
     def __str__(self):
         return str(self.image_url)
+
+    def setLocalURL(self):
+        self.local_image_url = str(settings.MEDIA_URL + self.name)
 
     def cache(self):
         """Store image locally if we have a URL"""
