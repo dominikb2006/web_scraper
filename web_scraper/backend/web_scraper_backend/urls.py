@@ -22,8 +22,8 @@ from django.conf import settings
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', views.home, name='home'),
-                  path('list_text/', views.list_text, name="list_text"),
+                  path('list_texts/', views.list_texts, name="list_texts"),
                   path('list_images/', views.list_images, name="list_images"),
-                  path('getImages/', views.getImages, name="get_images"),
-                  path('getTexts/', views.getTexts, name="get_texts"),
+                  path('getImages/', views.get_images, name="get_images"),
+                  path('getTexts/', views.get_texts, name="get_texts"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

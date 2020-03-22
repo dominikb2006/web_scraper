@@ -8,40 +8,44 @@ from .models import *
 from .backend import *
 
 
-def list_text(request):
-    text_list = WebPage.objects.order_by("-id")
+def list_texts(request):
+    text_list = WebPage.objects.order_by("-id") #[:1]
     list_dict = {"text_list_insert": text_list,
                  "header": "List of Texts from Websites"}
-    return render(request, 'list_text.html', context=list_dict)
+    return render(request, 'list_texts.html', context=list_dict)
 
 
 def list_images(request):
     image_list = Image.objects.order_by("-id")
-    list_dict = {"image_list_insert": image_list}
+    list_dict = {"image_list_insert": image_list,
+                 "header": "List of Images from Websites"}
     return render(request, 'list_images.html', context=list_dict)
 
 
 def home(request):
     wrong_url_form = 'Wrong URL'
-    home_dict = {"wrong_url_form": '',
+    home_dict = {"wrong_url_form": "",
                  "welcome_form": "Hello, please enter address URL and click Submit"}
 
     if request.method == "POST":
         url = request.POST.get('url')
         if is_valid(url):
 
-            modelWP = WebPage(url=url, text=urlIntoText(url))
-            modelWP.save()
-
+            webPage = WebPage(url=url,
+                              text=urlIntoText(url))
+            webPage.save()
             images_url = get_all_images(url)
+
             for image_url in images_url:
-                modelI = Image(image_url=image_url,
-                               url=modelWP,
-                               name=image_url.split("/")[-1])
-                modelI.setLocalURL()
-                modelI.cache()
-                modelI.save()
-                print(modelI)
+                image = Image(image_url=image_url,
+                              url=webPage)
+                image.setName()
+                image.setLocalURL()
+                try:
+                    image.save_photo()
+                    image.save()
+                except:
+                    x=[] #do nothing, u cant save this image
 
         else:
             home_dict["wrong_url_form"] = wrong_url_form
@@ -49,7 +53,7 @@ def home(request):
     return render(request, 'home.html', context=home_dict)
 
 
-def getImages(request):
+def get_images(request):
     file_name = "Images"
     files_path = settings.MEDIA_ROOT
     path_to_zip = make_archive(files_path, "zip", files_path)
@@ -60,7 +64,7 @@ def getImages(request):
     return response
 
 
-def getTexts(request):
+def get_texts(request):
     response = HttpResponse(content_type='text/csv')
     # decide the file name
     response['Content-Disposition'] = 'attachment; filename="Texts.csv"'

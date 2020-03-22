@@ -23,12 +23,16 @@ class Image(models.Model):
     def __str__(self):
         return str(self.image_url)
 
+    def setName(self):
+        if not self.name:
+            self.name = self.image_url.split("/")[-1]
+
     def setLocalURL(self):
-        self.local_image_url = str(settings.MEDIA_URL + self.name)
+        if self.name:
+            self.local_image_url = str(settings.MEDIA_URL + self.name)
 
-    def cache(self):
+    def save_photo(self):
         """Store image locally if we have a URL"""
-
         if self.image_url and not self.photo:
             result = urllib.request.urlretrieve(self.image_url)
             self.photo.save(
