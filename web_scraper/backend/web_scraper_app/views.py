@@ -1,10 +1,9 @@
 from shutil import make_archive
 from wsgiref.util import FileWrapper
 from django.http import HttpResponse
-
 from django.shortcuts import render
-
-from .forms import *
+import csv
+from django.utils.encoding import smart_str
 from .models import *
 from .backend import *
 
@@ -20,6 +19,7 @@ def list_images(request):
     image_list = Image.objects.order_by("-id")
     list_dict = {"image_list_insert": image_list}
     return render(request, 'list_images.html', context=list_dict)
+
 
 def home(request):
     wrong_url_form = 'Wrong URL'
@@ -49,27 +49,8 @@ def home(request):
     return render(request, 'home.html', context=home_dict)
 
 
-# def download(request, file_name):
-#     file_path = settings.MEDIA_ROOT + '/' + file_name
-#     file_wrapper = FileWrapper(file(file_path, 'rb'))
-#     file_mimetype = mimetypes.guess_type(file_path)
-#     response = HttpResponse(file_wrapper, content_type=file_mimetype)
-#     response['X-Sendfile'] = file_path
-#     response['Content-Length'] = os.stat(file_path).st_size
-#     response['Content-Disposition'] = 'attachment; filename=%s/' % smart_str(file_name)
-#     return response
-
-
 def getImages(request):
     file_name = "Images"
-    """
-    A django view to zip files in directory and send it as downloadable response to the browser.
-    Args:
-      @request: Django request object
-      @file_name: Name of the directory to be zipped
-    Returns:
-      A downloadable Http response
-    """
     files_path = settings.MEDIA_ROOT
     path_to_zip = make_archive(files_path, "zip", files_path)
     response = HttpResponse(FileWrapper(open(path_to_zip, 'rb')), content_type='application/zip')
@@ -77,8 +58,7 @@ def getImages(request):
         filename=file_name.replace(" ", "_")
     )
     return response
-import csv
-from django.utils.encoding import smart_str
+
 
 def getTexts(request):
     response = HttpResponse(content_type='text/csv')
@@ -88,12 +68,12 @@ def getTexts(request):
     writer = csv.writer(response, csv.excel)
     response.write(u'\ufeff'.encode('utf8'))
 
-    # write the headers
+    # headers
     writer.writerow([
         smart_str(u"Website URL"),
         smart_str(u"Website text")
     ])
-    # get data from database or from text file....
+    # get data from database
     pages = WebPage.objects.order_by("-id")
     for page in pages:
         writer.writerow([

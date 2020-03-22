@@ -4,4 +4,3 @@ data/web_scraper_db/.data/
 riders/riders/__pycache__/
 web_scraper/backend/web_scraper_backend/__pycache__/
 riders/
-web_scraper/frontend
