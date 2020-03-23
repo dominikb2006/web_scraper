@@ -4,17 +4,13 @@ from urllib.parse import urljoin, urlparse
 
 
 def is_valid(url):
-    """
-    Checks whether `url` is a valid URL.
-    """
+    """Checks whether `url` is a valid URL."""
     parsed = urlparse(url)
     return bool(parsed.netloc) and bool(parsed.scheme)
 
 
 def get_all_images(url):
-    """
-    Returns all image URLs on a single `url`
-    """
+    """Returns all image URLs on a single `url`"""
     soup = BeautifulSoup(requests.get(url).content, "html.parser")
     urls = []
     for img in soup.find_all("img"):
@@ -34,14 +30,14 @@ def get_all_images(url):
     return urls
 
 
-def urlIntoText_Test(url):
+def url_into_text_test(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.text)
     txt = soup.get_text()
     return txt
 
 
-def urlIntoText(url):
+def url_into_text(url):
     # get url
     page = requests.get(url)
     soup = BeautifulSoup(page.text)

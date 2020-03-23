@@ -6,7 +6,7 @@ from .models import Image, WebPage
 client = Client()
 
 
-class homeViewTest(TestCase):
+class HomeViewTest(TestCase):
     def test_home(self):
         url = 'home'
         response = self.client.get(reverse(url))
@@ -53,13 +53,13 @@ class ImageModelTests(TestCase):
     #     self.webpage.delete()
     #     self.image.delete()
 
-    def test_setName(self):
-        self.image.setName()
+    def test_set_name(self):
+        self.image.set_name()
         response = self.image.name
         self.assertEqual(response, 'testname1.jpg')
 
-    def test_setLocalURL(self):
-        self.image.setName()
-        self.image.setLocalURL()
+    def test_set_local_url(self):
+        self.image.set_name()
+        self.image.set_local_url()
         response = self.image.local_image_url
         self.assertEqual(response, '/media/testname1.jpg')

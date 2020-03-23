@@ -16,27 +16,24 @@ będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
 1. Pobrać repozytorium oraz uruchomić dockera.
 2. Postawić Kontenery:
     ```
-    $ sudo docker-compose build 
-    $ sudo docker-compose up
+    $ docker-compose build 
+    $ docker-compose up
     ```
-3. Wejść w nowym oknie komend do Kontenera oraz postawić bazę danych:
+3. Wejść w nowym oknie komend do Kontenera oraz postawić bazę danych:
     ```
-    $ sudo docker-compose exec web_scraper_backend bash
-    # python manage.py makemigrations web_scraper_app
-    # python manage.py migrate
+    $ docker-compose exec web_scraper_backend python manage.py makemigrations web_scraper_app
+    $ docker-compose exec web_scraper_backend python manage.py migrate
     ```
     (Opcjonalnie) Stworzyć Superusera:
     ```
-    # python manage.py createsuperuser
+    $ docker-compose exec web_scraper_backend python manage.py createsuperuser
     ```
     (Opcjonalnie) Uruchomić testy:
     ```
-    # python manage.py test
+    $ docker-compose exec web_scraper_backend python manage.py test
     ```
-4. Uruchomić przeglądarkę i wpisać adres:
-    ```
-    localhost:8000
-    ```
+4. Uruchomić przeglądarkę i wpisać adres `localhost:8000`
+
     _Et voilà!_
 
 **Funkcjonalność:**

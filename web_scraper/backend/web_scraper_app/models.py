@@ -6,7 +6,7 @@ from django.conf import settings
 
 
 class WebPage(models.Model):
-    url = models.URLField(max_length=5000)  # unique=True,
+    url = models.URLField(max_length=5000)
     text = models.TextField(default='')
 
     def __str__(self):
@@ -15,7 +15,7 @@ class WebPage(models.Model):
 
 class Image(models.Model):
     url = models.ForeignKey(WebPage, on_delete=models.CASCADE)
-    image_url = models.URLField(default='', max_length=5000)  # unique=True,
+    image_url = models.URLField(default='', max_length=5000)
     local_image_url = models.CharField(default='', max_length=5000)
     name = models.CharField(max_length=1000, default='')
     photo = models.ImageField(blank=True, default=None)
@@ -23,11 +23,11 @@ class Image(models.Model):
     def __str__(self):
         return str(self.image_url)
 
-    def setName(self):
+    def set_name(self):
         if not self.name:
             self.name = self.image_url.split("/")[-1]
 
-    def setLocalURL(self):
+    def set_local_url(self):
         if self.name:
             self.local_image_url = str(settings.MEDIA_URL + self.name)
 

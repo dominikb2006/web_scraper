@@ -1,6 +1,4 @@
 .idea/
-data/riders_db/
-data/web_scraper_db/.data/
-riders/riders/__pycache__/
 web_scraper/backend/web_scraper_backend/__pycache__/
-riders/
+/data/web_scraper_db/.data/
+/web_scraper/backend/media/

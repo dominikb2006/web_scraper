@@ -31,21 +31,21 @@ def home(request):
         url = request.POST.get('url')
         if is_valid(url):
 
-            webPage = WebPage(url=url,
-                              text=urlIntoText(url))
-            webPage.save()
+            WebPage = WebPage(url=url,
+                              text=url_into_text(url))
+            WebPage.save()
             images_url = get_all_images(url)
 
             for image_url in images_url:
                 image = Image(image_url=image_url,
-                              url=webPage)
-                image.setName()
-                image.setLocalURL()
+                              url=WebPage)
+                image.set_name()
+                image.set_local_url()
                 try:
                     image.save_photo()
                     image.save()
                 except:
-                    x=[] #do nothing, u cant save this image
+                    None #do nothing, u cant save this image
 
         else:
             home_dict["wrong_url_form"] = wrong_url_form
