@@ -3,7 +3,7 @@
 ## Application for loading text and pictures from a URL with option of downloading them.
 
 ### PL:
-###Opis:
+### Opis:
 
 Mikroserwis został stworzony na dockerze w Unixie w technologii Django oraz Postgres.
 
@@ -12,7 +12,7 @@ technologiach, które zresztą ostatnimi czasy rozwijałem, dlatego
 stwierdziłem, że napisanie tego krótkiego projektu w tej technologi
 będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
 
-###Aby uruchomić aplikację należy:
+### Aby uruchomić aplikację należy:
 1. Pobrać repozytorium oraz uruchomić dockera.
 2. Postawić Kontenery:
     ```

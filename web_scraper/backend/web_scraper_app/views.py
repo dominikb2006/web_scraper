@@ -31,14 +31,14 @@ def home(request):
         url = request.POST.get('url')
         if is_valid(url):
 
-            WebPage = WebPage(url=url,
+            webPage = WebPage(url=url,
                               text=url_into_text(url))
-            WebPage.save()
+            webPage.save()
             images_url = get_all_images(url)
 
             for image_url in images_url:
                 image = Image(image_url=image_url,
-                              url=WebPage)
+                              url=webPage)
                 image.set_name()
                 image.set_local_url()
                 try:

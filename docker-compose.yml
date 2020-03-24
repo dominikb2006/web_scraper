@@ -6,7 +6,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: travelers123
-#      POSTGRES_PASSWORD: postgres
       PG_DATA: /var/lib/postgresql/data
     volumes:
       - ./data/web_scraper_db/.data:/var/lib/postgresql/data
@@ -26,7 +25,5 @@ services:
       DB_HOST: 'web_scraper_db'
       DB_PORT: 5432
       DB_USER: plan_it
-#      DB_USER: web_scraper_app
       DB_PASSWORD: travelers123
-#      DB_PASSWORD: postgres
       DB_NAME: web_scraper_db
