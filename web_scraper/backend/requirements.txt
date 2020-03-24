@@ -4,3 +4,4 @@ django-environ==0.4.5
 requests
 bs4
 Pillow
+djangorestframework

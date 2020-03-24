@@ -9,7 +9,7 @@ from .backend import *
 
 
 def list_texts(request):
-    text_list = WebPage.objects.order_by("-id") #[:1]
+    text_list = WebPage.objects.order_by("-id")  # [:1]
     list_dict = {"text_list_insert": text_list,
                  "header": "List of Texts from Websites"}
     return render(request, 'list_texts.html', context=list_dict)
@@ -22,7 +22,29 @@ def list_images(request):
     return render(request, 'list_images.html', context=list_dict)
 
 
+from .forms import WebPageForm
+from .serializer import WebPageSerializer
+
+
 def home(request):
+    if request.method == "POST":
+        form = WebPageForm(request.POST)
+        if form.is_valid():
+            url = form.cleaned_data['url']
+            r = requests.get('http://api.embed.ly/1/oembed?key=' + settings.EMBEDLY_KEY + '&url=' + url)
+            json = r.json()
+            serializer = WebPageSerializer(data=json)
+            if serializer.is_valid():
+                web_page = serializer.save()
+                return render(request, 'home.html', {'webpage': web_page,
+                                                     })
+    else:
+        form = WebPageForm()
+
+    return render(request, 'index.html', {'form': form})
+
+
+def home2(request):
     wrong_url_form = 'Wrong URL'
     home_dict = {"wrong_url_form": "",
                  "welcome_form": "Hello, please enter address URL and click Submit"}
@@ -31,21 +53,21 @@ def home(request):
         url = request.POST.get('url')
         if is_valid(url):
 
-            WebPage = WebPage(url=url,
-                              text=url_into_text(url))
-            WebPage.save()
+            web_page = WebPage(url=url,
+                               text=url_into_text(url))
+            web_page.save()
             images_url = get_all_images(url)
 
             for image_url in images_url:
                 image = Image(image_url=image_url,
-                              url=WebPage)
+                              url=web_page)
                 image.set_name()
                 image.set_local_url()
                 try:
                     image.save_photo()
                     image.save()
                 except:
-                    None #do nothing, u cant save this image
+                    None  # do nothing, u cant save this image
 
         else:
             home_dict["wrong_url_form"] = wrong_url_form

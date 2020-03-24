@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-{% extends "base.html" %}
-{% block body_block %}
+{% extends 'base.html' %}
+
+{% block content %}
 <h1 class="page-header">{{ welcome_form }}</h1>
 <div class="container">
     <p class="container">
         {{ wrong_url_form }}
     </p>
-    <form method="POST">Enter URL: <input type="text" name="url"/><br/>
-<!--        {{ form.as_p}}-->
-
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
-
+    <p>asdasdasds</p>
+    <ul>
+        <li>{{ web_page.url }}</li>
+    </ul>
 </div>
+<!--    <img src="{{ webpage.thumbnail_url }}" />-->
+
 {% endblock %}

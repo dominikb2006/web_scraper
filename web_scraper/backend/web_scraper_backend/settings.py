@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web_scraper_app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +77,10 @@ WSGI_APPLICATION = 'web_scraper_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': env('DB_HOST', default='web_scraper_db'),
         'PORT': env('DB_PORT', default=5432),
-        'USER': env('DB_USER', default='web_scraper_db'),
+        'USER': env('DB_USER', default='web_scraper'),
         'PASSWORD': env('DB_PASSWORD'),
         'NAME': env('DB_NAME', default='web_scraper_db'),
     }
@@ -124,3 +123,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+EMBEDLY_KEY = 'aaaaa'
