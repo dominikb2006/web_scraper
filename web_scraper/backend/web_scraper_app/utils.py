@@ -30,13 +30,6 @@ def get_all_images(url):
     return urls
 
 
-def url_into_text_test(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.text)
-    txt = soup.get_text()
-    return txt
-
-
 def url_into_text(url):
     # get url
     page = requests.get(url)

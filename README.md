@@ -47,7 +47,7 @@ będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
 - Klikając zakładkę `Download Images` pobieramy obrazy z folderu `/media/` z Kontenera, w którym znajdują się wszystkie obrazy z dazy danych
   
 **Kod:**
-- w `web_scraper_app/backend.py` znajdują się funkcje spradzające poprawność adresu URL, pobierające cały tekst oraz listę obrazków ze strony
+- w `web_scraper_app/utils.py` znajdują się funkcje spradzające poprawność adresu URL, pobierające cały tekst oraz listę obrazków ze strony
 - w `web_scraper_app/models.py` znajdują się modele bazodanowe
 - w `web_scraper_app/views.py` znajdują się stworzone widoki
 - w `web_scraper_app/templates/` znajdują się templatki HTMLowe

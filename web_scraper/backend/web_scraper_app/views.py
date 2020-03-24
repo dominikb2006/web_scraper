@@ -1,15 +1,16 @@
 from shutil import make_archive
 from wsgiref.util import FileWrapper
+import csv
 from django.http import HttpResponse
 from django.shortcuts import render
-import csv
 from django.utils.encoding import smart_str
-from .models import *
-from .backend import *
+from django.conf import settings
+from .models import WebPage, Image
+from .utils import is_valid, get_all_images, url_into_text
 
 
 def list_texts(request):
-    text_list = WebPage.objects.order_by("-id") #[:1]
+    text_list = WebPage.objects.order_by("-id")
     list_dict = {"text_list_insert": text_list,
                  "header": "List of Texts from Websites"}
     return render(request, 'list_texts.html', context=list_dict)
@@ -44,8 +45,8 @@ def home(request):
                 try:
                     image.save_photo()
                     image.save()
-                except:
-                    None #do nothing, u cant save this image
+                except Exception:
+                    continue  # do nothing, u cant save this image
 
         else:
             home_dict["wrong_url_form"] = wrong_url_form

@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from web_scraper_app import views
 from django.conf.urls.static import static
 from django.conf import settings
+from web_scraper_app import views
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', views.home, name='home'),
                   path('list_texts/', views.list_texts, name="list_texts"),
                   path('list_images/', views.list_images, name="list_images"),
-                  path('getImages/', views.get_images, name="get_images"),
-                  path('getTexts/', views.get_texts, name="get_texts"),
+                  path('get_images/', views.get_images, name="get_images"),
+                  path('get_texts/', views.get_texts, name="get_texts"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

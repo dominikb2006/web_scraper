@@ -1,7 +1,7 @@
-from django.db import models
-from django.core.files import File
 import urllib.request
 import os
+from django.db import models
+from django.core.files import File
 from django.conf import settings
 
 

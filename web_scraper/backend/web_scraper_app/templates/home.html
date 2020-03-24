@@ -7,8 +7,6 @@
         {{ wrong_url_form }}
     </p>
     <form method="POST">Enter URL: <input type="text" name="url"/><br/>
-<!--        {{ form.as_p}}-->
-
         {% csrf_token %}
         <input type="submit" class="btn btn-primary" value="Submit">
     </form>
