@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': env('DB_HOST', default='web_scraper_db'),
         'PORT': env('DB_PORT', default=5432),
-        'USER': env('DB_USER', default='web_scraper'),
+        'USER': env('DB_USER', default='plan_it'),
         'PASSWORD': env('DB_PASSWORD'),
         'NAME': env('DB_NAME', default='web_scraper_db'),
     }

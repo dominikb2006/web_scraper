@@ -37,11 +37,14 @@ def home(request):
             if serializer.is_valid():
                 web_page = serializer.save()
                 return render(request, 'home.html', {'webpage': web_page,
+                                                     "welcome_form": "Hello, please enter address URL and click Submit",
                                                      })
     else:
         form = WebPageForm()
 
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'index.html', {'form': form,
+                                          "welcome_form": "Hello, please enter address URL and click Submit",
+                                          })
 
 
 def home2(request):
@@ -90,10 +93,8 @@ def get_texts(request):
     response = HttpResponse(content_type='text/csv')
     # decide the file name
     response['Content-Disposition'] = 'attachment; filename="Texts.csv"'
-
     writer = csv.writer(response, csv.excel)
     response.write(u'\ufeff'.encode('utf8'))
-
     # headers
     writer.writerow([
         smart_str(u"Website URL"),

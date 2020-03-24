@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-
-{% block content %}
+{% block body_block %}
 <h1 class="page-header">{{ welcome_form }}</h1>
 <div class="container">
     <p class="container">
         {{ wrong_url_form }}
     </p>
-    <p>asdasdasds</p>
     <ul>
         <li>{{ web_page.url }}</li>
     </ul>
 </div>
-<!--    <img src="{{ webpage.thumbnail_url }}" />-->
+<!--    <img src="{{ web_page.thumbnail_url }}" />-->
 
 {% endblock %}

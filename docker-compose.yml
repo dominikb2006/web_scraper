@@ -5,7 +5,8 @@ services:
     container_name: web_scraper_db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+#      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: travelers123
       PG_DATA: /var/lib/postgresql/data
     volumes:
       - ./data/web_scraper_db/.data:/var/lib/postgresql/data
