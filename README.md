@@ -74,6 +74,10 @@ bibliotek, jak `BeautifulSoup`, `requests`, czy `urllib`. Praca z dokumentacją 
 połączona z szukaniem rozwiązań na wszelakich forach uważam za bardzo kształcące doświadczenie, które poprawiło
 moją zdolność w pracy nad kodem i doświadczenie, które zdobyłem na pewno w niedalekiej przyszłości wykorzystam nie raz.
 
+W razie jakichkolwiek problemów, bądź pytań proszę o kontakt:
+- kom. 880 503 120
+- e-mail: brysdominik@gmail.com
+
 Pozdrawiam
 
 Dominik Bryś
