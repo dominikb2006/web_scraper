@@ -19,9 +19,8 @@ będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
     $ docker-compose build 
     $ docker-compose up
     ```
-3. Wejść w nowym oknie komend do Kontenera oraz postawić bazę danych:
+3. Przez nowe okno komend postawić bazę danych:
     ```
-    $ docker-compose exec web_scraper_backend python manage.py makemigrations web_scraper_app
     $ docker-compose exec web_scraper_backend python manage.py migrate
     ```
     (Opcjonalnie) Stworzyć Superusera:
@@ -34,12 +33,12 @@ będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
     ```
 4. Uruchomić przeglądarkę i wpisać adres `localhost:8000`
 
-    _Et voilà!_
+    ##    _Et voilà!_
 
 **Funkcjonalność:**
 - W zakładce `Home` po wprowadzeniu adresu URL (dalej jako `źródłowy URL`):
     * System sprawdza poprawność wprowadzonego adresu
-    * System pobiera oraz zapisuje w bazie tekst z źródłowego URL (bez kodu HTML oraz JS)
+    * System pobiera oraz zapisuje w bazie tekst z źródłowego URL (usuwając kod HTML oraz JS)
     * System pobiera oraz zapisuje w bazie wszystkie obrazki z źródłowego URL
 - W zakładce `List Texts` system zwraca wszystkie elementy tekstowe z bazy danch w tabeli `źródłowy URL | Tekst danej strony` w kolejności od najnowszego
 - W zakładce `List Images` system zwraca wszystkie zapisane obrazy z bazy danych w tabeli `źródłowy URL | Obrazek | Lokalny adres w Kontenerze | Oryginalny adres URL obrazka` w kolejności od najnowszego
@@ -47,30 +46,39 @@ będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
 - Klikając zakładkę `Download Images` pobieramy obrazy z folderu `/media/` z Kontenera, w którym znajdują się wszystkie obrazy z dazy danych
   
 **Kod:**
-- w `web_scraper_app/utils.py` znajdują się funkcje spradzające poprawność adresu URL, pobierające cały tekst oraz listę obrazków ze strony
+- w `web_scraper_app/utils.py` znajdują się funkcje sprawdzające poprawność adresu URL, pobierające cały tekst oraz listę obrazków ze strony
 - w `web_scraper_app/models.py` znajdują się modele bazodanowe
 - w `web_scraper_app/views.py` znajdują się stworzone widoki
-- w `web_scraper_app/templates/` znajdują się templatki HTMLowe
+- w `web_scraper_app/templates/` znajdują się template HTMLowe
 - w `web_scraper_app/tests.py` znajdują się testy
     
 **Do poprawy lub zmiany:**
 - czasem w adresie URL obrazka pojawiają się nietypowe znaki, np. przecinek. Wtedy Aplikacja ich nie zapisuje
-- nie można zapisać zdjęć ze stron, które nie dają możliwości ich zapisania
-- czasem strony blokują pobieranie informacji (np blablacar)
+- nie można zapisać zdjęć ze stron, które są chronione przed zapisem
+- część Aplikacji zwraca RESTowy response, część renderuje HTML. Można w całości użyć RESTa
+- czasem strony blokują pobieranie informacji (np. blablacar)
 - format CSV dla ściąganej tabeli z tekstem chyba nie jest najlepszy, ponieważ bardzo duże ilości tekstu pojawiają się w jednej komórce, przez co niektóre Aplikacje typu `LibreOffice` nie chcą ich ładować.
 Z drugiej strony te dane nie będą obrabiane w typowym 'Excelu', więc możliwe, że ten format będzie spełniał swoje zadanie.
-- można podzielić pobierany tekst ze stron do bazy danych na fragmenty, np. `Head | <Wnętrze Head>`, `Body | <Wnętrze Body>`, `p | <Wnętrze p>`, etc.
-- użycie form może poprawić późniejszą obróbkę i czytelność kodu
+- możnaby podzielić pobierany tekst ze stron do bazy danych na fragmenty, np. `Head | <Wnętrze Head>`, `Body | <Wnętrze Body>`, `p | <Wnętrze p>`, etc.
 - wszystkie operacje działały w miare szybko, dlatego nie dodawałem operacji `Sprawdzenia statusu zleconego zadania` 
 - więcej testów
+
 **Wnioski:**
+Jestem zadowolny w mojej pracy, mimo iż nie jest jeszcze w 100% zaimplementowana w REST API, to na pewno 
+zgłębie i rozwinę ten temat, ponieważ jest to niezwykle popularna i użyteczna technologia. A ze względu
+na ograniczony czas, nie udało się jej tutaj w pełni wdrożyć.
+Podczas pisania powyższej aplikacji powtórzyłem oraz utrwaliłem stawianie Kontenerów w Dockerze oraz ogólnie
+pisanie Aplikacji w Django.
+Nauczyłem się pisać podstawowe testy oprujące na widokach, modelach i API. Poznałem wiele nowych
+bibliotek, jak `BeautifulSoup`, `requests`, czy `urllib`. Praca z dokumentacją tych bibliotek, Django
+połączona z szukaniem rozwiązań na wszelakich forach uważam za bardzo kształcące doświadczenie, które poprawiło
+moją zdolność w pracy nad kodem i doświadczenie, które zdobyłem na pewno w niedalekiej przyszłości wykorzystam nie raz.
 
-Podczas pisania powyższej aplikacji powtórzyłem oraz utrwaliłem stawianie Kontenerów w Dockerze oraz ogólnie pisanie Aplikacji w Django.
-Nauczyłem się pisać postawowe testy w Django oprujące na widokach, modelach i API. Poznałem wiele nowych bibliotek, jak `BeautifulSoup`, `requests`, czy `urllib`. Praca z dokumentacją tych bibliotek oraz Django połączona z szukaniem
-rozwiązań na wszelakich forach uważam za kształcące doświadczenie,
-które poprawiło moją zdolność w pracy nad kodem i które na pewno w niedalekiej przyszłości użyję ponownie.
-Jestem zadowolny w mojej pracy i uważam, że wyczerpuje zadane problem.
+Pozdrawiam
 
+Dominik Bryś
+
+### Opis zadania:
 ```
 1. Opis zadania
 Zadanie polega na stworzeniu mikroserwisu wspierającego pracę
