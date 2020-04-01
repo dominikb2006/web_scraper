@@ -7,11 +7,6 @@
 
 Mikroserwis został stworzony na dockerze w Unixie w technologii Django oraz Postgres.
 
-Moja przyszła praca inżynierska zostanie stworzona właśnie w tych
-technologiach, które zresztą ostatnimi czasy rozwijałem, dlatego
-stwierdziłem, że napisanie tego krótkiego projektu w tej technologi
-będzie dla mnie dobrym sprawdzianem i utrwaleniem nabytej wiedzy.
-
 ### Aby uruchomić aplikację należy:
 1. Pobrać repozytorium oraz uruchomić dockera.
 2. Postawić Kontenery:
@@ -62,55 +57,3 @@ Z drugiej strony te dane nie będą obrabiane w typowym 'Excelu', więc możliwe
 - możnaby podzielić pobierany tekst ze stron do bazy danych na fragmenty, np. `Head | <Wnętrze Head>`, `Body | <Wnętrze Body>`, `p | <Wnętrze p>`, etc.
 - wszystkie operacje działały w miare szybko, dlatego nie dodawałem operacji `Sprawdzenia statusu zleconego zadania` 
 - więcej testów
-
-**Wnioski:**
-Jestem zadowolny w mojej pracy, mimo iż nie jest jeszcze w 100% zaimplementowana w REST API, to na pewno 
-zgłębie i rozwinę ten temat, ponieważ jest to niezwykle popularna i użyteczna technologia. A ze względu
-na ograniczony czas, nie udało się jej tutaj w pełni wdrożyć.
-Podczas pisania powyższej aplikacji powtórzyłem oraz utrwaliłem stawianie Kontenerów w Dockerze oraz ogólnie
-pisanie Aplikacji w Django.
-Nauczyłem się pisać podstawowe testy oprujące na widokach, modelach i API. Poznałem wiele nowych
-bibliotek, jak `BeautifulSoup`, `requests`, czy `urllib`. Praca z dokumentacją tych bibliotek, Django
-połączona z szukaniem rozwiązań na wszelakich forach uważam za bardzo kształcące doświadczenie, które poprawiło
-moją zdolność w pracy nad kodem i doświadczenie, które zdobyłem na pewno w niedalekiej przyszłości wykorzystam nie raz.
-
-W razie jakichkolwiek problemów, bądź pytań proszę o kontakt:
-- kom. 880 503 120
-- e-mail: brysdominik@gmail.com
-
-Pozdrawiam
-
-Dominik Bryś
-
-### Opis zadania:
-```
-1. Opis zadania
-Zadanie polega na stworzeniu mikroserwisu wspierającego pracę
-programistów zajmujących się uczeniem maszynowym. System ma pomóc
-w gromadzeniu i udostępnianiu informacji pobranych z sieci. Główną
-funkcjonalnością systemu jest pobieranie tekstu oraz obrazków ze
-stron internetowych. 
-2. Funkcjonalność 
-    • Zlecenie pobrania tekstu z danej strony internetowej i zapis jej w systemie. 
-    • Zlecenie pobrania wszystkich obrazków z danej strony i zapis ich w systemie. 
-• Sprawdzenie statusu zleconego zadania. 
-    • Możliwość pobrania stworzonych zasobów (tekstu i obrazków). 
-3. Architektura 
-    • Zadanie polega na zaprojektowaniu i zaimplementowaniu REST API dla tego systemu. 
-    • Mikroserwis powinien być napisany w języku Python. 
-    • Rozwiązanie powinno zawierać testy automatyczne. 
-    • Uruchomienie mikroserwisu powinno być maksymalnie zautomatyzowane (preferowane użycie Dockera lub podobnych narzędzi). 
-4. FAQ 
-    • Czy wymagane jest wykonanie Javascriptu w celu uzyskania tekstu/obrazków na stronie? Nie, pobieramy tylko statyczne zasoby. 
-    • Czy z tekstu pobieranego ze stron powinien usuwać tagi HTML i kod Javascript? Tak. 
-    • Czy napisanie frontendu jest częścią zadania? Nie. 
-    • Czy można założyć, że pobieranie tekstu/obrazków ze strony jest szybkie? Nie, pobieranie może trwać bardzo długo. 
-    • Pisząc o stronie internetowej mamy na myśli pojedynczy dokument HTML /konkretny URL (i obrazki w nim zalinkowane). 
-5. Kryteria sukcesu: 
-    • Właściwa architektura dla tego problemu 
-• Poprawnie zaprojektowane i zaimplementowane API (niekoniecznie dogłębna implementacja) 
-    • Automatyzacja systemu 
-    • Testy systemu 
-    • Pisemny komentarz od autora na temat rozwiązania. Może być w stylu retro (co poszło ok, co nie ok, co do zmiany) 
-Rozwiązanie proszę umieścić jako prywatne repozytorium na Githubie, udostępnione dla użytkownika FeedbackSemantive oraz przesłać link do niego. 
-```
